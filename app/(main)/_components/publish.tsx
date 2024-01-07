@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import {
   Popover,
   PopoverContent,
@@ -21,6 +22,7 @@ interface PublishProps {
 const Publish = ({ initialData }: PublishProps) => {
   const origin = useOrigin();
   const update = useMutation(api.documents.update);
+  const router = useRouter();
 
   const [copied, setCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,6 +42,8 @@ const Publish = ({ initialData }: PublishProps) => {
       success: "Document published!",
       error: "Failed to publish document.",
     });
+
+    setTimeout(() => router.push(url), 2000);
   };
 
   const onUnPublish = () => {
@@ -66,11 +70,11 @@ const Publish = ({ initialData }: PublishProps) => {
   return (
     <Popover>
       <PopoverTrigger>
-        <Button size="sm" variant="ghost">
+        <Button size="sm" variant="ghost" className=" transform hover:-translate-y-1 transition duration-400">
           Publish
           {initialData.isPublished && (
             // Add spinning framer motion and shadow animation
-            <Globe className="ml-2 h-4 w-4 text-muted-foreground " />
+            <Globe className="ml-2 h-4 w-4 text-muted-foreground animate-pulse" />
           )}
         </Button>
       </PopoverTrigger>

@@ -33,7 +33,7 @@ const Navbar = () => {
               </Button>
             </SignInButton>
             <SignInButton mode="modal">
-              <Button size="sm">
+              <Button size="sm" className="transform hover:-translate-y-1 transition duration-400">
                 Get Started For Free
               </Button>
             </SignInButton>
@@ -41,7 +41,7 @@ const Navbar = () => {
         )}
         {isAuthenticated && !isLoading && (
           <>
-            <Button variant="ghost" size="sm" asChild>
+            <Button variant="ghost" size="sm" asChild className="transform hover:-translate-y-1 transition duration-400 hover:text-slate-300">
               <Link href="/documents">
                 Get Started
               </Link>

@@ -15,7 +15,7 @@ const Logo = () => {
     >
       <Image src="/logo.svg" alt="logo" width={32} height={32} className="dark:hidden"/>
       <Image src="/logo-dark.svg" alt="logo" width={32} height={32} className="hidden dark:block"/>
-      <p className={cn("font-semibold text-2xl", poppins.className)}>iTask</p>
+      <p className={cn("font-semibold text-2xl", poppins.className)}>iNote</p>
     </div>
   );
 };

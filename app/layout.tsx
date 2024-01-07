@@ -6,10 +6,10 @@ import { ModalProvider } from "@/components/providers/modal-provider";
 import { EdgeStoreProvider } from "@/lib/edgestore";
 import { ConvexClientProvider } from "@/components/providers/convex-provider";
 
-
 export const metadata: Metadata = {
-  title: "iTask",
-  description: "Make your tasks easier to manage.",
+  title: "iNote",
+  description:
+    "iNote features a minimalist design that focuses on simplicity and functionality, providing a distraction-free note-taking environment.",
   icons: {
     icon: [
       {
@@ -41,7 +41,7 @@ export default function RootLayout({
               defaultTheme="system"
               enableSystem
               disableTransitionOnChange
-              storageKey="itask-theme"
+              storageKey="inote-theme"
             >
               <Toaster position="bottom-right" />
               <ModalProvider />

@@ -24,7 +24,7 @@ const Error = () => {
             <h2 className="text-xl font-medium">
                 Something went wrong!
             </h2>
-            <Button asChild>
+            <Button asChild className="transform hover:-translate-y-1 transition duration-400">
                 <Link href="/documents">
                     Go Back
                 </Link>

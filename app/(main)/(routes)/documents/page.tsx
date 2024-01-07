@@ -29,23 +29,23 @@ const DocumentsPage = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center space-y-4">
       <Image
-        src="/document-light.png"
+        src="/empty.png"
         alt="Empty"
         width="300"
         height="300"
         className="dark:hidden"
       />
       <Image
-        src="/document-dark.png"
+        src="/empty-dark.png"
         alt="Empty"
         width="300"
         height="300"
         className="hidden dark:block"
       />
       <h2 className="text-lg font-medium">
-        Welcome to {user?.firstName}&apos;s iTask
+        Welcome to {user?.firstName}&apos;s iNote
       </h2>
-      <Button onClick={onCreate}>
+      <Button onClick={onCreate} className="transform hover:-translate-y-1 transition duration-400">
         <PlusCircle className="mr-2 h-4 w-4" />
         New Document
       </Button>

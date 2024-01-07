@@ -1,9 +1,16 @@
-<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" fill="#FFFEFC" stroke="#FFFEFC">
     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
     <g id="SVGRepo_iconCarrier">
-        <path fill-rule="evenodd" clip-rule="evenodd"
-            d="M20.6097 5.20743C21.0475 5.54416 21.1294 6.17201 20.7926 6.60976L10.7926 19.6098C10.6172 19.8378 10.352 19.9793 10.0648 19.9979C9.77765 20.0166 9.49637 19.9106 9.29289 19.7072L4.29289 14.7072C3.90237 14.3166 3.90237 13.6835 4.29289 13.2929C4.68342 12.9024 5.31658 12.9024 5.70711 13.2929L9.90178 17.4876L19.2074 5.39034C19.5441 4.95258 20.172 4.87069 20.6097 5.20743Z"
-            fill="#FFFEFC"></path>
+        <title>feather</title>
+        <desc>Created with sketchtool.</desc>
+        <g id="web-app" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+            <g id="feather" fill="#FFFEFC">
+                <path
+                    d="M5.99252809,17.8771424 C5.9974605,17.9174041 6,17.9584055 6,18 L6,21 C6,21.5522847 5.55228475,22 5,22 C4.44771525,22 4,21.5522847 4,21 L4,18 C4,9.163444 11.163444,2 20,2 C20,10.1618099 13.8887683,16.8962651 5.99252809,17.8771424 Z M6.16663906,15.8333609 C12.163656,14.9016638 16.9016638,10.163656 17.8333609,4.16663906 C11.836344,5.0983362 7.0983362,9.83634397 6.16663906,15.8333609 Z"
+                    id="Shape"> </path>
+            </g>
+        </g>
     </g>
 </svg>
