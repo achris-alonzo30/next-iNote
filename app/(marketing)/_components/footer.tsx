@@ -1,13 +1,30 @@
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
-import Logo from "./logo";
+import { LinkedinIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
   return (
-    <div className="flex items-center w-full p-6 bg-background z-50 dark:bg-[#1F1F1F]">
-      <Logo />
-      <div className="md:ml-auto w-full justify-between md:justify-end flex items-center gap-x-2 text-muted-foreground">
-        <Button variant="ghost" size="sm">Privacy Policy</Button>
-        <Button variant="ghost" size="sm">Terms & Conditions</Button>
+    <div className="flex flex-col items-center justify-center w-full p-6 bg-background z-50 dark:bg-[#1F1F1F] border-t">
+      <div className="md:ml-auto w-full flex flex-col items-center justify-center gap-x-2 text-muted-foreground">
+        <div className="flex mt-1">
+          <Button variant="ghost" size="sm" asChild>
+            <Link href="https://linkedin.com/in/lonzochris" target="_blank">
+              <LinkedinIcon className="w-6 h-6" />
+            </Link>
+          </Button>
+
+          <Button variant="ghost" size="sm">
+            <Link href="https://github.com/achris-alonzo30" target="_blank">
+              <GithubIcon className="w-6 h-6" />
+            </Link>
+          </Button>
+        </div>
+        <p className="text-base mt-2">
+          © {currentYear} Design by <strong>Lonzo-Chris</strong>
+        </p>
       </div>
     </div>
   );

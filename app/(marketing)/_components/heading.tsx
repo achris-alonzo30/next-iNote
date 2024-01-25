@@ -11,8 +11,8 @@ import React from "react";
 const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
   return (
-    <div className="max-w-3xl space-y-4">
-      <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold">
+    <div className="max-w-3xl space-y-6">
+      <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold space-y-2">
         Crafting Tomorrow&apos;s Success Today. <br />
         Welcome to <span className="underline inline-flex animate-background-shine bg-[linear-gradient(110deg,#939393,45%,#1e293b,55%,#939393)] bg-[length:250%_100%] bg-clip-text text-3xl sm:text-5xl md:text-6xl font-bold text-transparent">iNote</span>
       </h1>
@@ -35,7 +35,7 @@ const Heading = () => {
       {!isAuthenticated && !isLoading && (
         <SignInButton mode="modal" >
           <Button size="sm" className="transform hover:-translate-y-1 transition duration-400">
-            Get Started For Free
+            Explore Here
             <ArrowRight className="h-4 w-4 ml-2" />
           </Button>
         </SignInButton>
