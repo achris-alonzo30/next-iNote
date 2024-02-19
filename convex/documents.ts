@@ -2,6 +2,7 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
+// Create a new document
 export const create = mutation({
   args: {
     title: v.string(),
@@ -87,6 +88,7 @@ export const archive = mutation({
           isArchived: true,
         });
 
+        // We want to make sure that all children are also archived
         await recursiveArchive(child._id);
       }
     };

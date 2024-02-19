@@ -22,7 +22,9 @@ const Title = ({ initialData }: TitleProps) => {
     setTitle(initialData.title);
     setIsEditing(true);
     setTimeout(() => {
+      // It applies focus to the input, textarea, or select
       inputRef.current?.focus();
+      // It highlights the text in the input to select it
       inputRef.current?.setSelectionRange(0, inputRef.current.value.length);
     }, 0);
   };

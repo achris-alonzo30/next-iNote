@@ -75,7 +75,7 @@ const DocumentList = ({ parentDocumentId, level = 0 }: DocumentListProps) => {
             onExpand={() => onExpand(document._id)}
             expanded={expanded[document._id]}
           />
-
+          {/* Recursive call to document list to see the children components */}
           {expanded[document._id] && (
             <DocumentList parentDocumentId={document._id} level={level + 1} />
           )}

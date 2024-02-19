@@ -53,23 +53,22 @@ const Item = ({
 }: ItemProps) => {
   const create = useMutation(api.documents.create);
   const router = useRouter();
-  const {user} = useUser();
-  const archive = useMutation(api.documents.archive)
+  const { user } = useUser();
+  const archive = useMutation(api.documents.archive);
 
   const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
     if (!id) return;
 
-    const promise = archive({id}).then(() =>
-    router.push(`/documents`))
+    const promise = archive({ id }).then(() => router.push(`/documents`));
 
     toast.promise(promise, {
       loading: "Archiving document...",
       success: "Document archived",
       error: "Failed to archive document",
-    })
-  }
- 
+    });
+  };
+
   const handleExpand = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
   ) => {
@@ -83,10 +82,10 @@ const Item = ({
 
     const promise = create({ title: "Untitled", parentDocument: id }).then(
       (documentId) => {
+        // This opens up the sidebar automatically
         if (!expanded) onExpand?.();
         router.push(`/documents/${documentId}`);
       }
-      
     );
     toast.promise(promise, {
       loading: "Creating document...",
@@ -132,11 +131,19 @@ const Item = ({
         <div className="ml-auto flex items-center gap-x-2">
           <DropdownMenu>
             <DropdownMenuTrigger asChild onClick={(e) => e.stopPropagation()}>
-              <div role="button" className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 ">
+              <div
+                role="button"
+                className="opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600 "
+              >
                 <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
               </div>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-60 " align="start" side="right" forceMount>
+            <DropdownMenuContent
+              className="w-60 "
+              align="start"
+              side="right"
+              forceMount
+            >
               <DropdownMenuItem onClick={onArchive}>
                 <Trash className="h-4 w-4 mr-2" />
                 Delete

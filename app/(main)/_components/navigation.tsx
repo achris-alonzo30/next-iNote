@@ -32,6 +32,7 @@ import Navbar from "./navbar";
 const Navigation = () => {
   const pathname = usePathname();
   const params = useParams();
+  // This is used what considered mobile and desktop
   const isMobile = useMediaQuery("(max-width: 768px)");
   const create = useMutation(api.documents.create);
   const search = useSearch();
@@ -73,7 +74,9 @@ const Navigation = () => {
 
     let newWidth = event.clientX;
 
+    // The 240 comes from the className
     if (newWidth < 240) newWidth = 240;
+    // This is the limit how much the side bar can move
     if (newWidth > 480) newWidth = 480;
 
     if (sidebarRef.current && navbarRef.current) {

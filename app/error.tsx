@@ -21,7 +21,7 @@ const Error = () => {
                 height="300"
                 className="hidden dark:blocl"
             />
-            <h2 className="text-xl font-medium">
+            <h2 className="text-3xl font-bold">
                 Something went wrong!
             </h2>
             <Button asChild className="transform hover:-translate-y-1 transition duration-400">
