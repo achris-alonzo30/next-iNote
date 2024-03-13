@@ -1,7 +1,12 @@
-import { OpenAI } from "openai";
+
+import { OpenAI } from "@langchain/openai";
 import { internal } from "./_generated/api";
+import { LLMChain } from "langchain/chains";
 import { Doc, Id } from "./_generated/dataModel";
 import { internalAction } from "./_generated/server";
+import { ConversationChain } from "langchain/chains";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { ConversationSummaryBufferMemory } from "langchain/memory";
 
 type ChatParams = {
     messages: Doc<"messages">[];
@@ -10,67 +15,47 @@ type ChatParams = {
 
 export const chat = internalAction({
     handler: async (ctx, { messages, messageId }: ChatParams) => {
-        const apiKey = process.env.OPENAI_API_KEY;
-        const openai = new OpenAI({apiKey});
+        const llm = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", maxTokens: 1000  });
+        const memory = new ConversationSummaryBufferMemory({
+            memoryKey: "chat_history",
+            llm,
+            maxTokenLimit: 100
+          });
 
-        const formattedMessages = messages.map((message) =>({
-            role: message.author !== "iNoteAI" ? 
-                ("user" as const) 
-                : ("assistant" as const),
-            content: message.body
-        }) )
+        const promptTemplate = `
+        As a knowledgeable and creative writer, your job is to support aspiring writers in their journey.\n
+        Teach and help them to create captivating blog posts, using vivid descriptions and personal tales.\n
+        Encourage and push them to find hidden strength in writing, making their writing intriguing and turn them to a great story teller.\n
+        \n----------------\n
+        In a markdown format, write a story about:
+        \n----------------\n
+        `;
 
-        try {
-            const stream = await openai.chat.completions.create({
-                model: "gpt-3.5-turbo",
-                temperature: 0,
-                stream: true,
-                messages: [
-                    {
-                        role: "system",
-                        content: `
-                        As a knowledgeable and creative writer, your job is to support aspiring writers in their journey.\n
-                        Teach and help them to create captivating blog posts, using vivid descriptions and personal tales.\n
-                        Encourage and push them to find hidden strength in writing, making their writing intriguing and turn them to a great story teller.\n
-                        \n----------------\n
-                        In a markdown format, write a story about:
-                        \n----------------\n
-                        `
-                    },
-                    ...messages.map(({ body, author}) => ({
-                        role: author === "iNoteAI" ? ("assistant" as const) : ("user" as const),
-                        content: `Use the following pieces of context (or previous conversaton if needed) to answer the users question in markdown format. \nIf you don't know the answer, just say that you don't know, don't try to make up an answer.
-                        \n----------------\n
-                        ${body[0]}` 
-                    })),
-                ],
-            });
+        const prompt = PromptTemplate.fromTemplate(
+            `
+                ${promptTemplate}\n\n
 
-            let body = "";
-            for await (const part of stream) {
-                if (part.choices[0].delta?.content) {
-                    body += part.choices[0].delta?.content;
-                    // Alternatively you could wait for complete words / sentences.
-                    // Here we send an update on every stream message.
-                    await ctx.runMutation(internal.messages.update, {
-                        messageId,
-                        body,
-                    }) 
-                }
-            }
-        } catch (error) {
-            if (error instanceof OpenAI.APIError) {
-                console.error(error.status);
-                console.error(error.message);
-                await ctx.runMutation(internal.messages.update, {
-                    messageId,
-                    body: `Failed to fetch response: ${error.message}`,
-                });
-                console.error(error);
-            } else {
-                throw error;
-            }
+                \n----------------\n
+                CURRENT CONVERSATION: \n
+                {chat_history} \n\n
+
+                Use this current conversation as a memory to help you to remember what you and user talked about so you can answer the user next question. \n\n
+
+                \n----------------\n
+                USER'S QUESTION: \n
+                {input}
+                \n----------------\n
+            `)
+        const chain = new LLMChain({llm, prompt, memory})
+
+        const response = await chain.invoke({ input: messages[0].body })
+
+        if (response) {
+            await ctx.runMutation(internal.messages.update, {
+                messageId, 
+                body: response.text
+            })
         }
-
+ 
     }
 })

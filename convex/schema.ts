@@ -27,4 +27,5 @@ export default defineSchema({
     body: v.string(),
     sessionId: v.optional(v.string())
   }).index("by_session", ["sessionId"]),
+
 });

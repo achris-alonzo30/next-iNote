@@ -71,7 +71,7 @@ export const ChatInput = ({ sessionId, author }: ChatInputProps ) => {
                                                 autoFocus
                                                 placeholder="Need any help?"
                                                 disabled={isSubmitting}
-                                                className="resize-none pr-12 text-base py-3 scrollbar-thumb-zinc-400 scrollbar-thumb-rouned scrollbar-track-zinc-400-light scrollbar-w-2 scrollbar-track-rounded scrolling-touch"
+                                                className="resize-none pr-12 text-base py-3"
                                                 onKeyDown={(e) => {
                                                     if (e.key === "Enter" && !e.shiftKey) {
                                                         e.preventDefault();

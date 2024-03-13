@@ -9,7 +9,7 @@ import { formatDistance, subDays } from "date-fns";
 import { useMutation, useQuery } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { PlusCircle, ArrowRight } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";

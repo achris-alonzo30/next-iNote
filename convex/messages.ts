@@ -41,7 +41,7 @@ export const send = mutation({
       messages.reverse();  
       const messageId = await ctx.db.insert("messages", {
         author: "iNoteAI",
-        body: "...",
+        body: "Thinking...",
         sessionId,
       });
 
@@ -66,14 +66,18 @@ export const update = internalMutation({
 
 export const clear = mutation({
   args: {
+    body: v.string(),
     sessionId: v.string(),
   },
   handler: async (ctx, args) => {
     const messages = await ctx.db
       .query("messages")
       .withIndex("by_session", (q) => q.eq("sessionId", args.sessionId))
+      .filter((q) => q.eq(q.field("body"), args.body))
       .collect();
 
     await Promise.all(messages.map((message) => ctx.db.delete(message._id)));
   },
 });
+
+
