@@ -24,12 +24,14 @@ const Navbar = () => {
       )}
     >
       {isLoading ? (
-      <Logo />) : (
-        <div className="flex items-center gap-x-4">
+      
+      <div className="flex items-center gap-x-4">
           <Skeleton className="h-8 w-8 rounded-full dark:bg-zinc-600 bg-zinc-200" />
             <Skeleton className="h-8 w-24 rounded-lg dark:bg-zinc-600 bg-zinc-200" />
             
           </div>
+      ) : (
+        <Logo />
       )}
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {isLoading && (
