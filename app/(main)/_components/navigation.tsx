@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useMutation } from "convex/react";
 import { useMediaQuery } from "usehooks-ts";
@@ -21,14 +20,15 @@ import {
   ChevronLeft,
 } from "lucide-react";
 
+
+import Item from "./item";
+import Navbar from "./navbar";
+import { toast } from "sonner";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import Item from "./item";
-import Navbar from "./navbar";
-import { toast } from "sonner";
 import UserItem from "./user-item";
 import TrashBox from "./trash-box";
 import DocumentList from "./document-list";

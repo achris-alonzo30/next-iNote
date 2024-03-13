@@ -2,6 +2,15 @@ import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 import { Doc, Id } from "./_generated/dataModel";
 
+export const getAllDocuments = query({
+  handler: async (ctx) => {
+    return await ctx.db
+      .query("documents")
+      .filter((q) => q.eq(q.field("isPublished"), true))
+      .collect();
+  },
+});
+
 // Create a new document
 export const create = mutation({
   args: {

@@ -2,10 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { formatDistance  } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useUser } from "@clerk/clerk-react";
 import { api } from "@/convex/_generated/api";
-import { formatDistance, subDays } from "date-fns";
 import { useMutation, useQuery } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
 

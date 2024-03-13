@@ -11,10 +11,6 @@ import { Loader } from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { TypewriterEffect } from "@/components/animated-ui/typewriter-effect";
 
-
-
-
-
 const Heading = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
 

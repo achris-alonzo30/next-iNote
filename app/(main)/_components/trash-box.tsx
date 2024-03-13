@@ -1,16 +1,17 @@
 "use client";
 
-import ConfirmModal from "@/components/modals/confirm-modal";
-import { Loader } from "@/components/loader";
-import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
-import { Search, Trash, Undo } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { toast } from "sonner";
 
+import { Search, Trash, Undo } from "lucide-react";
+
+import { toast } from "sonner";
+import { Loader } from "@/components/loader";
+import { Input } from "@/components/ui/input";
+import ConfirmModal from "@/components/modals/confirm-modal";
 const TrashBox = () => {
   const router = useRouter();
   const params = useParams();

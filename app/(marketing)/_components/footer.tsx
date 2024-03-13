@@ -1,8 +1,7 @@
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
-import { LinkedinIcon } from "lucide-react";
 import { GithubIcon } from "lucide-react";
+import { LinkedinIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const Error = () => {
     return (
@@ -21,7 +21,7 @@ const Error = () => {
                 height="300"
                 className="hidden dark:blocl"
             />
-            <h2 className="text-3xl font-bold">
+            <h2 className="text-4xl font-bold">
                 Something went wrong!
             </h2>
             <Button asChild className="transform hover:-translate-y-1 transition duration-400">

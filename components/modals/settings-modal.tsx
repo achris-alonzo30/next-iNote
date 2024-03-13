@@ -1,9 +1,9 @@
 "use client";
 
+import { Label } from "@/components/ui/label";
 import { UseSettings } from "@/hooks/use-settings";
-import { Dialog, DialogContent, DialogHeader } from "../ui/dialog";
-import { Label } from "../ui/label";
-import { ModeToggle } from "../mode-toggle";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 
 const SettingsModal = () => {
   const settings = UseSettings();
