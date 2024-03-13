@@ -1,6 +1,5 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import {
   BlockNoteEditor,
   PartialBlock
@@ -10,7 +9,7 @@ import {
   useBlockNote
 } from "@blocknote/react";
 import "@blocknote/core/style.css";
-
+import { useTheme } from "next-themes";
 import { useEdgeStore } from "@/lib/edgestore";
 
 interface EditorProps {
@@ -31,7 +30,6 @@ const Editor = ({
     const response = await edgestore.publicFiles.upload({ 
       file
     });
-
     return response.url;
   }
 
@@ -48,7 +46,7 @@ const Editor = ({
   })
 
   return (
-    <div>
+    <div className="h-full w-full text-justify rounded-xl p-4 ring-1 ring-inset ring-gray-800/10 lg:rounded-2xl pt-8 overflow-y-hidden">
       <BlockNoteView
         editor={editor}
         theme={resolvedTheme === "dark" ? "dark" : "light"}

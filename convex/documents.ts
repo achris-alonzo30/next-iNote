@@ -29,6 +29,33 @@ export const create = mutation({
   },
 });
 
+export const getDocuments = query({
+  handler: async (ctx) => {
+    try {
+      const identity = await ctx.auth.getUserIdentity();
+
+      if (!identity) {
+        throw new Error("You must be logged in to get documents");
+      }
+
+      const userId = identity.subject;
+
+      const documents = await ctx.db
+        .query("documents")
+        .withIndex("by_user", (q) => q.eq("userId", userId))
+        .filter((q) => q.eq(q.field("isArchived"), false))
+        .order("desc")
+        .collect();
+
+      if (!documents) return [];
+
+      return documents;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+});
+
 export const getSidebar = query({
   args: {
     parentDocument: v.optional(v.id("documents")),

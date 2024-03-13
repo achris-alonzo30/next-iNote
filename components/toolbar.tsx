@@ -1,14 +1,19 @@
 "use client";
 
-import { Doc } from "@/convex/_generated/dataModel";
 import IconPicker from "./icon-picker";
-import { Button } from "./ui/button";
-import { ImageIcon, Smile, X } from "lucide-react";
-import { ElementRef, useRef, useState } from "react";
+import { formatDistance } from "date-fns";
 import { useMutation } from "convex/react";
+import { useUser } from "@clerk/clerk-react";
 import { api } from "@/convex/_generated/api";
+import { Doc } from "@/convex/_generated/dataModel";
+import { ElementRef, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import { useCoverImage } from "@/hooks/use-cover-image";
+
+import { ImageIcon, Smile, X } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
 
 interface ToolbarProps {
   initialData: Doc<"documents">;
@@ -17,6 +22,7 @@ interface ToolbarProps {
 
 const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const inputRef = useRef<ElementRef<"textarea">>(null);
+  
   const [isEditing, setIsEditing] = useState(false);
   const [value, setValue] = useState(initialData.title);
 
@@ -24,6 +30,7 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   const removeIcon = useMutation(api.documents.removeIcon);
 
   const coverImage = useCoverImage();
+  const { user } = useUser();
 
   const enableInput = () => {
     if (preview) return;
@@ -119,11 +126,21 @@ const Toolbar = ({ initialData, preview }: ToolbarProps) => {
       ) : (
         <div
           onClick={enableInput}
-          className="pb-[11.5px] text-5xl font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF]"
+          className="pb-[11.5px] flex flex-col gap-y-4 text-5xl font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF]"
         >
-          {initialData.title}
+          <span>{initialData.title}</span>
         </div>
       )}
+      {!isEditing && preview && (
+        <div
+        className="pb-[11.5px] w-full flex flex-col gap-y-4 text-5xl font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF]"
+      >
+        <div className="flex items-center justify-between w-auto">
+          <span className="dark:text-zinc-400 text-zinc-600 text-base font-normal">Author: {user?.firstName}</span>
+          <span className="dark:text-zinc-400 text-zinc-600 text-base font-normal pr-8">Created {formatDistance(new Date(initialData._creationTime), new Date(), { addSuffix: true })}</span>
+        </div>
+      </div>
+    )}
     </div>
   );
 };

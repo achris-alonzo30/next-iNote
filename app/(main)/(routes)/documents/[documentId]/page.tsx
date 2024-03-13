@@ -1,13 +1,15 @@
 "use client";
 
-import Cover from "@/components/cover";
-import dynamic from "next/dynamic";
 import { useMemo } from "react";
-import Toolbar from "@/components/toolbar";
-import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
+
+import Cover from "@/components/cover";
+import Toolbar from "@/components/toolbar";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ChatPopover } from "@/components/chat/chat-popover";
 
 interface DocumentIdPageProps {
   params: {
@@ -55,11 +57,15 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
   if (document === null) return <div>Document not found</div>;
 
   return (
-    <div className="pb-40 ">
+    <div className="pb-40" >
       <Cover url={document.coverImage} />
       <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
         <Toolbar initialData={document} />
         <Editor onChange={onChange} initialContent={document.content} />
+        
+      </div>
+      <div className="absolute z-50 bottom-4 right-6">
+        <ChatPopover documentId={params.documentId} />
       </div>
     </div>
   );

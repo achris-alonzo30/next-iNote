@@ -1,60 +1,68 @@
 "use client";
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Skeleton } from "@/components/ui/skeleton";
+import React from "react";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { useMutation } from "convex/react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/clerk-react";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import { cn } from "@/lib/utils";
-import { useUser } from "@clerk/clerk-react";
-import { useMutation } from "convex/react";
+
 import {
-  ChevronDown,
-  ChevronRight,
-  LucideIcon,
-  MoreHorizontal,
   Plus,
   Trash,
+  LucideIcon,
+  ChevronDown,
+  ChevronRight,
+  MoreHorizontal,
 } from "lucide-react";
-import { useRouter } from "next/navigation";
-import React from "react";
+
 import { toast } from "sonner";
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface ItemProps {
-  id?: Id<"documents">;
-  documentIcon?: string;
+  label: string;
+  level?: number;
   active?: boolean;
+  icon: LucideIcon;
   expanded?: boolean;
   isSearch?: boolean;
-  level?: number;
-  onExpand?: () => void;
+  isDocument?: boolean;
   onClick?: () => void;
-  label: string;
-  icon: LucideIcon;
+  id?: Id<"documents">;
+  onExpand?: () => void;
+  documentIcon?: string;
 }
 
 // You can rename the icon prop and capitalize it so you can reuse it.
 const Item = ({
   id,
   label,
-  icon: Icon,
-  onClick,
   active,
-  documentIcon,
+  onClick,
   isSearch,
-  level = 0,
   onExpand,
   expanded,
+  level = 0,
+  isDocument,
+  icon: Icon,
+  documentIcon,
 }: ItemProps) => {
-  const create = useMutation(api.documents.create);
   const router = useRouter();
   const { user } = useUser();
+  
+  const create = useMutation(api.documents.create);
   const archive = useMutation(api.documents.archive);
+
+  const ChevronIcon = expanded ? ChevronDown : ChevronRight;
 
   const onArchive = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
@@ -94,7 +102,7 @@ const Item = ({
     });
   };
 
-  const ChevronIcon = expanded ? ChevronDown : ChevronRight;
+  
 
   return (
     <div
@@ -121,7 +129,13 @@ const Item = ({
         <Icon className="shrink-0 h-[18px] w-[18px] mr-2 text-muted-foreground" />
       )}
 
-      <span className="truncate">{label}</span>
+      {isDocument ? (
+        <Link href="/documents" className="truncate">{label}</Link>
+      ) : (
+        <span className="truncate">{label}</span>
+      ) }
+
+      
       {isSearch && (
         <kbd className="ml-auto pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
           <span className="text-xs">⌘</span>K

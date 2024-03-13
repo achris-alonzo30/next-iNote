@@ -4,7 +4,7 @@ import { UploadCloudIcon, X } from "lucide-react";
 import * as React from "react";
 import { useDropzone, type DropzoneOptions } from "react-dropzone";
 import { twMerge } from "tailwind-merge";
-import { Spinner } from "./spinner";
+import { Loader } from "./loader";
 import Image from "next/image";
 
 const variants = {
@@ -125,7 +125,7 @@ const SingleImageDropzone = React.forwardRef<HTMLInputElement, InputProps>(
       <div className="relative ">
         {disabled && (
           <div className="flex items-center justify-center absolute inset-y-0 h-full w-full bg-background/80 z-50">
-            <Spinner size="lg" />
+            <Loader />
           </div>
         )}
         <div

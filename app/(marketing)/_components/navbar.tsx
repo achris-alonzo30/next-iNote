@@ -1,14 +1,17 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import { UseScrollTop } from "@/hooks/use-scroll-top";
-import Logo from "./logo";
-import { ModeToggle } from "@/components/mode-toggle";
-import { useConvexAuth } from "convex/react";
-import { SignInButton, UserButton } from "@clerk/clerk-react";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/spinner";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { useConvexAuth } from "convex/react";
+import { UseScrollTop } from "@/hooks/use-scroll-top";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
+
+import Logo from "./logo";
+import { Loader } from "@/components/loader";
+import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ModeToggle } from "@/components/mode-toggle";
+
 
 const Navbar = () => {
   const { isAuthenticated, isLoading } = useConvexAuth();
@@ -20,10 +23,21 @@ const Navbar = () => {
         scrolled && "border-b shadow-sm"
       )}
     >
-      <Logo />
+      {isLoading ? (
+      <Logo />) : (
+        <div className="flex items-center gap-x-4">
+          <Skeleton className="h-8 w-8 rounded-full dark:bg-zinc-600 bg-zinc-200" />
+            <Skeleton className="h-8 w-24 rounded-lg dark:bg-zinc-600 bg-zinc-200" />
+            
+          </div>
+      )}
       <div className="md:ml-auto md:justify-end justify-between w-full flex items-center gap-x-2">
         {isLoading && (
-          <Spinner />
+          <div className="flex items-center gap-x-4">
+            <Skeleton className="h-8 w-24 rounded-lg dark:bg-zinc-600 bg-zinc-200" />
+            <Skeleton className="h-8 w-8 rounded-full dark:bg-zinc-600 bg-zinc-200" />
+            <Skeleton className="h-8 w-8 rounded-full dark:bg-zinc-600 bg-zinc-200" />
+          </div>
         )}
         {!isAuthenticated && !isLoading && (
           <>
@@ -49,9 +63,9 @@ const Navbar = () => {
             <UserButton 
               afterSignOutUrl="/"
             />
+             <ModeToggle />
           </>
         )}
-        <ModeToggle />
       </div>
     </div>
   );

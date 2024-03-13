@@ -7,7 +7,7 @@ import { SignInButton } from "@clerk/clerk-react";
 
 import { ArrowRight } from "lucide-react";
 
-import { Spinner } from "@/components/spinner";
+import { Loader } from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import { TypewriterEffect } from "@/components/animated-ui/typewriter-effect";
 
@@ -46,7 +46,7 @@ const Heading = () => {
       </h3>
       {isLoading && (
         <div className="w-full flex items-center justify-center">
-          <Spinner size="lg" />
+          <Loader />
         </div>
       )}
       {isAuthenticated && !isLoading && (

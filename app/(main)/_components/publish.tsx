@@ -71,10 +71,10 @@ const Publish = ({ initialData }: PublishProps) => {
     <Popover>
       <PopoverTrigger>
         <Button size="sm" variant="ghost" className=" transform hover:-translate-y-1 transition duration-400">
-          Publish
+          {initialData.isPublished ? "Published" : "Publish"}
           {initialData.isPublished && (
             // Add spinning framer motion and shadow animation
-            <Globe className="ml-2 h-4 w-4 text-muted-foreground animate-pulse" />
+            <Globe className="ml-2 h-4 w-4 text-green-600 animate-pulse" />
           )}
         </Button>
       </PopoverTrigger>

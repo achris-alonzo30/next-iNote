@@ -1,13 +1,14 @@
 "use client";
 
-import { useMutation, useQuery } from "convex/react";
-import dynamic from "next/dynamic";
 import { useMemo } from "react";
-
+import dynamic from "next/dynamic";
+import { notFound } from 'next/navigation';
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
-import Toolbar from "@/components/toolbar";
+import { useMutation, useQuery } from "convex/react";
+
 import Cover from "@/components/cover";
+import Toolbar from "@/components/toolbar";
 import { Skeleton } from "@/components/ui/skeleton";
 
 interface DocumentIdPageProps {
@@ -50,9 +51,7 @@ const DocumentIdPage = ({
     );
   }
 
-  if (document === null) {
-    return <div>Not found</div>
-  }
+  if (document === null) notFound();
 
   return ( 
     <div className="pb-40">

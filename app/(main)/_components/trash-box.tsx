@@ -1,7 +1,7 @@
 "use client";
 
 import ConfirmModal from "@/components/modals/confirm-modal";
-import { Spinner } from "@/components/spinner";
+import { Loader } from "@/components/loader";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
@@ -59,7 +59,7 @@ const TrashBox = () => {
   if (documents === undefined)
     return (
       <div className="h-full flex items-center justify-center p-4">
-        <Spinner size="lg" />
+        <Loader />
       </div>
     );
 

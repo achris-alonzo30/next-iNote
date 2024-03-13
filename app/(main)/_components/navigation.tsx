@@ -1,33 +1,37 @@
 "use client";
 
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import {
-  ChevronLeft,
-  MenuIcon,
-  Plus,
-  PlusCircle,
-  Search,
-  Settings,
-  Trash,
-} from "lucide-react";
-import { useParams, usePathname, useRouter } from "next/navigation";
-import { ElementRef, useEffect, useRef, useState } from "react";
-import { useMediaQuery } from "usehooks-ts";
-import UserItem from "./user-item";
 import { useMutation } from "convex/react";
+import { useMediaQuery } from "usehooks-ts";
 import { api } from "@/convex/_generated/api";
-import Item from "./item";
-import { toast } from "sonner";
-import DocumentList from "./document-list";
+import { useSearch } from "@/hooks/use-search";
+import { UseSettings } from "@/hooks/use-settings";
+import { ElementRef, useEffect, useRef, useState } from "react";
+import { useParams, usePathname, useRouter } from "next/navigation";
+
+import {
+  Plus,
+  Trash,
+  Search,
+  MenuIcon,
+  Settings,
+  PlusCircle,
+  ScrollText,
+  ChevronLeft,
+} from "lucide-react";
+
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import TrashBox from "./trash-box";
-import { useSearch } from "@/hooks/use-search";
-import { UseSettings } from "@/hooks/use-settings";
+import Item from "./item";
 import Navbar from "./navbar";
+import { toast } from "sonner";
+import UserItem from "./user-item";
+import TrashBox from "./trash-box";
+import DocumentList from "./document-list";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -158,6 +162,7 @@ const Navigation = () => {
         <div>
           <UserItem />
           <Item label="search" icon={Search} isSearch onClick={search.onOpen} />
+          <Item label="documents" icon={ScrollText} isDocument/>
           <Item label="settings" icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
         </div>
@@ -193,10 +198,10 @@ const Navigation = () => {
         {!!params.documentId ? (
           <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
         ) : (
-          <nav className="bg-transparent px-3 py-2 w-full">
+          <nav className="bg-transparent px-6 py-3 w-full">
             {isCollapsed && (
               <MenuIcon
-                className="w-6 h-6 text-muted-foreground"
+                className="w-6 h-6 text-muted-foreground outline hover:text-muted-foreground/50"
                 role="button"
                 onClick={resetWidth}
               />
