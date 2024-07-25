@@ -19,7 +19,7 @@
 
 <img width="1469" alt="Screenshot 2024-07-25 at 5 41 53 PM" src="https://github.com/user-attachments/assets/e283896d-7dcd-40ca-aa49-1ff57f71a212">
 
-## N Notion Like Writing Canvas With AI Writer N
+## 🖋️ Notion Like Writing Canvas With AI Writer 🖋️
 
 <img width="1469" alt="Screenshot 2024-07-25 at 5 42 16 PM" src="https://github.com/user-attachments/assets/79153862-f8d4-430f-bc2a-7bf998e9d138">
 
