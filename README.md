@@ -11,20 +11,20 @@
 
 <h4 align="center">Minimalist note-taking platform powered by AI.</h4>
 
-## Minimalistic Landing Page
+## ᯈ Minimalistic Landing Page ᯈ
 
 <img width="1469" alt="Screenshot 2024-07-25 at 5 41 36 PM" src="https://github.com/user-attachments/assets/aa272541-fbd5-41f6-b4c9-72bd88e97583">
 
-## Private Workspace Area
+## 🔐 Private Workspace Area 🔐
 
 <img width="1469" alt="Screenshot 2024-07-25 at 5 41 53 PM" src="https://github.com/user-attachments/assets/e283896d-7dcd-40ca-aa49-1ff57f71a212">
 
-## Notion Like Writing Canvas With AI Writer
+## N Notion Like Writing Canvas With AI Writer N
 
 <img width="1469" alt="Screenshot 2024-07-25 at 5 42 16 PM" src="https://github.com/user-attachments/assets/79153862-f8d4-430f-bc2a-7bf998e9d138">
 
 
-## Main Key Features of Hireme
+## ✨ Main Key Features of iNote ✨
 | <div style="width:285px">**Feature**</div> | **Description** |
 |---|---|
 | **1. Privacy Workspace** | A secure, personalized environment where users can manage their job search data, including resumes, cover letters, and applications, with end-to-end encryption powered by Clerk. |
@@ -34,7 +34,7 @@
 | **5. Clean, Modern UI using TailwindCSS and Shadcn-UI** | A visually appealing and user-friendly interface that provides a seamless experience across devices, built with cutting-edge technologies for optimal performance and responsiveness. |
 
 
-## 📚 Tech Stack
+## 📚 Tech Stack 📚
 
 | <div style="width:140px">**Category**</div> | <div style="width:100px">**Choice**</div> | **Descriptions** |
 |---|---|---|
@@ -54,7 +54,7 @@
 | **Framer Motion** | [Framer-Motion](https://github.com/framer/motion) | Motion library for React. |
 
 
-## Getting started
+## 🔥 Getting started 🔥
 
 To clone and run this application, you'll need [Git](https://github.com/achris-alonzo30/next-iNote.git) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
@@ -72,7 +72,7 @@ $ npm install or bun install
 $ npm run dev or bun run dev
 ```
 
-## **Prerequisites**
+## ‼️ **Prerequisites** ‼️
 
 > [Convex](https://docs.convex.dev/quickstart/nextjs) Create your account on Convex for free and get your API keys by following the instructions on the given link.
 
