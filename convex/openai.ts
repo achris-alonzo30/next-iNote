@@ -15,7 +15,7 @@ type ChatParams = {
 
 export const chat = internalAction({
     handler: async (ctx, { messages, messageId }: ChatParams) => {
-        const llm = new OpenAI({ temperature: 0, modelName: "gpt-3.5-turbo", maxTokens: 1000  });
+        const llm = new OpenAI({ temperature: 0, modelName: "gpt-4o-mini", maxTokens: 1000  });
         const memory = new ConversationSummaryBufferMemory({
             memoryKey: "chat_history",
             llm,
